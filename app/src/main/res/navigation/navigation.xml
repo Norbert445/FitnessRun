@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/setupName">
+    <fragment
+        android:id="@+id/runsFragment"
+        android:name="com.example.fitnessaplikacia.fragments.RunsFragment"
+        android:label="fragment_runs"
+        tools:layout="@layout/fragment_runs" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fitnessaplikacia.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/startRunFragment"
+        android:name="com.example.fitnessaplikacia.fragments.StartRunFragment"
+        android:label="fragment_start_run"
+        tools:layout="@layout/fragment_start_run" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.fitnessaplikacia.fragments.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/setupName"
+        android:name="com.example.fitnessaplikacia.fragments.SetupNameFragment"
+        android:label="fragment_setup_name"
+        tools:layout="@layout/fragment_setup_name" >
+        <action
+            android:id="@+id/action_setupName_to_weightFragment"
+            app:destination="@id/weightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="com.example.fitnessaplikacia.fragments.WeightFragment"
+        android:label="fragment_weight"
+        tools:layout="@layout/fragment_weight" >
+        <action
+            android:id="@+id/action_weightFragment_to_startRunFragment"
+            app:destination="@id/startRunFragment" />
+    </fragment>
+</navigation>
