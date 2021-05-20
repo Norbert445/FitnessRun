@@ -42,7 +42,6 @@ class SetupNameFragment : Fragment(R.layout.fragment_setup_name) {
                     R.id.action_setupName_to_weightFragment,
                 )
             } else {
-
                 tiName.error = "Nezadali ste meno"
             }
         }

@@ -14,7 +14,8 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.43" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvGreeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
