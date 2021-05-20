@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/startRunFragment">
+    app:startDestination="@id/setupName">
     <fragment
         android:id="@+id/runsFragment"
         android:name="com.example.fitnessaplikacia.fragments.RunsFragment"
@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_setupName_to_weightFragment"
             app:destination="@id/weightFragment" />
+        <action
+            android:id="@+id/action_setupName_to_startRunFragment"
+            app:destination="@id/startRunFragment" />
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
