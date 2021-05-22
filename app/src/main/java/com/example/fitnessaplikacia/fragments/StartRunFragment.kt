@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.utility.Constants.KEY_NAME
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,11 +22,17 @@ class StartRunFragment : Fragment(R.layout.fragment_start_run) {
         super.onViewCreated(view, savedInstanceState)
 
         setGreeting()
+
+        fabStart.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_startRunFragment_to_runFragment
+            )
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun setGreeting() {
-        val name = sharedPref.getString(KEY_NAME,"")
+        val name = sharedPref.getString(KEY_NAME, "")
         tvGreeting.text = "Ahoj ${name} :)"
     }
 }

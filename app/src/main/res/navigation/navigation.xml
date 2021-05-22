@@ -18,7 +18,11 @@
         android:id="@+id/startRunFragment"
         android:name="com.example.fitnessaplikacia.fragments.StartRunFragment"
         android:label="fragment_start_run"
-        tools:layout="@layout/fragment_start_run" />
+        tools:layout="@layout/fragment_start_run" >
+        <action
+            android:id="@+id/action_startRunFragment_to_runFragment"
+            app:destination="@id/runFragment" />
+    </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.example.fitnessaplikacia.fragments.StatisticsFragment"
@@ -45,4 +49,8 @@
             android:id="@+id/action_weightFragment_to_startRunFragment"
             app:destination="@id/startRunFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/runFragment"
+        android:name="com.example.fitnessaplikacia.fragments.RunFragment"
+        android:label="RunFragment" />
 </navigation>
