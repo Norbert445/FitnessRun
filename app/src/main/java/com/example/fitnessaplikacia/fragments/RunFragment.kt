@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.fitnessaplikacia.R
+import com.example.fitnessaplikacia.models.RunEvent
 import com.example.fitnessaplikacia.services.TrackingService
 import com.example.fitnessaplikacia.utility.Constants.ACTION_PAUSE_SERVICE
 import com.example.fitnessaplikacia.utility.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.fitnessaplikacia.utility.Constants.ACTION_STOP_SERVICE
+import com.example.fitnessaplikacia.utility.TimerUtil
 import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.fragment_run.*
 
@@ -18,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_run.*
 class RunFragment : Fragment(R.layout.fragment_run) {
 
     lateinit var googleMap: GoogleMap
+    private var toggle = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,15 +31,45 @@ class RunFragment : Fragment(R.layout.fragment_run) {
             googleMap = it
         }
 
-        sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+        setObservers()
+        setToggleListener()
 
+        sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+    }
+
+    private fun setObservers() {
+        TrackingService.runEvent.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                RunEvent.START -> {
+                    fabPauseRun.setImageResource(R.drawable.pause)
+                }
+                RunEvent.PAUSE -> {
+                    fabPauseRun.setImageResource(R.drawable.play)
+                }
+                RunEvent.END -> {
+
+                }
+            }
+        })
+
+        TrackingService.timeInMillis.observe(viewLifecycleOwner, Observer {
+            tvTime.text = TimerUtil.getFormattedTime(it,true)
+        })
+    }
+
+    private fun setToggleListener() {
         fabPauseRun.setOnClickListener {
-            sendCommandToService(ACTION_PAUSE_SERVICE)
+            if (toggle) {
+                sendCommandToService(ACTION_PAUSE_SERVICE)
+                toggle = false
+            } else {
+                sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+                toggle = true
+            }
         }
         fabStopRun.setOnClickListener {
             sendCommandToService(ACTION_STOP_SERVICE)
         }
-
     }
 
     private fun sendCommandToService(action: String) {
