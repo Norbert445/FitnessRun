@@ -18,6 +18,8 @@ object Constants {
     const val NOTIFICATION_CHANNEL_ID = "run_channel"
     const val NOTIFICATION_CHANNEL_NAME = "run_channel_name"
     const val NOTIFICATION_ID = 9
+    const val LOCATION_UPDATE_INTERVAL = 5000L
+    const val FASTEST_LOCATION_UPDATE_INTERVAL = 2000L
 
     //Pending Intent
     const val ACTION_SHOW_RUN_FRAGMENT = "ACTION_SHOW_RUN_FRAGMENT"

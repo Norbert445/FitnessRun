@@ -84,4 +84,7 @@ dependencies {
 
     // LifecycleService
     implementation "androidx.lifecycle:lifecycle-service:2.3.1"
+
+    // Easy Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
 }
