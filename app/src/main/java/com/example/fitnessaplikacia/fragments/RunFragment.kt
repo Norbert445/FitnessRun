@@ -9,12 +9,18 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.models.RunEvent
+import com.example.fitnessaplikacia.services.Polyline
 import com.example.fitnessaplikacia.services.TrackingService
 import com.example.fitnessaplikacia.utility.Constants.ACTION_PAUSE_SERVICE
 import com.example.fitnessaplikacia.utility.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.fitnessaplikacia.utility.Constants.ACTION_STOP_SERVICE
+import com.example.fitnessaplikacia.utility.Constants.MAP_ZOOM
+import com.example.fitnessaplikacia.utility.Constants.POLYLINE_COLOR
+import com.example.fitnessaplikacia.utility.Constants.POLYLINE_WIDTH
 import com.example.fitnessaplikacia.utility.TimerUtil
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.fragment_run.*
 
 
@@ -23,18 +29,58 @@ class RunFragment : Fragment(R.layout.fragment_run) {
     lateinit var googleMap: GoogleMap
     private var toggle = true
 
+    private var pathPoints = mutableListOf<Polyline>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         googleMapView.onCreate(savedInstanceState)
         googleMapView.getMapAsync {
             googleMap = it
+            addAllPolylines()
         }
 
         setObservers()
         setToggleListener()
 
         sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+    }
+
+
+
+    private fun moveCameraToUser() {
+        if(pathPoints.isNotEmpty() && pathPoints.last().isNotEmpty()) {
+            googleMap.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    pathPoints.last().last(),
+                    MAP_ZOOM
+                )
+            )
+        }
+    }
+
+    private fun addAllPolylines() {
+        for(polyLine in pathPoints) {
+            val polylineOptions = PolylineOptions()
+                .color(POLYLINE_COLOR)
+                .width(POLYLINE_WIDTH)
+                .addAll(polyLine)
+            googleMap.addPolyline(polylineOptions)
+        }
+    }
+
+    private fun addLatestPolyline() {
+        if(pathPoints.isNotEmpty() && pathPoints.last().size > 1) {
+            val preLastLatLng = pathPoints.last()[pathPoints.last().size - 2]
+            val lastLatLng = pathPoints.last()[pathPoints.last().size - 1]
+
+            val polylineOptions = PolylineOptions()
+                .color(POLYLINE_COLOR)
+                .width(POLYLINE_WIDTH)
+                .add(preLastLatLng)
+                .add(lastLatLng)
+            googleMap.addPolyline(polylineOptions)
+        }
     }
 
     private fun setObservers() {
@@ -54,6 +100,12 @@ class RunFragment : Fragment(R.layout.fragment_run) {
 
         TrackingService.timeInMillis.observe(viewLifecycleOwner, Observer {
             tvTime.text = TimerUtil.getFormattedTime(it,true)
+        })
+
+        TrackingService.pathPoints.observe(viewLifecycleOwner, Observer {
+            pathPoints = it
+            addLatestPolyline()
+            moveCameraToUser()
         })
     }
 

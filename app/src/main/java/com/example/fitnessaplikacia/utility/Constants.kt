@@ -1,5 +1,7 @@
 package com.example.fitnessaplikacia.utility
 
+import android.graphics.Color
+
 object Constants {
 
     //Shared preferences
@@ -23,4 +25,12 @@ object Constants {
 
     //Pending Intent
     const val ACTION_SHOW_RUN_FRAGMENT = "ACTION_SHOW_RUN_FRAGMENT"
+
+    //Runfragment
+    const val POLYLINE_COLOR = Color.BLUE
+    const val POLYLINE_WIDTH = 8f
+    const val MAP_ZOOM = 15f
+
+    //StartRunFragment
+    const val REQUEST_CODE_LOCATION = 0
 }
