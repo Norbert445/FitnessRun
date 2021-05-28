@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.models.RunEvent
 import com.example.fitnessaplikacia.services.Polyline
@@ -21,6 +22,7 @@ import com.example.fitnessaplikacia.utility.TimerUtil
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_run.*
 
 
@@ -38,15 +40,38 @@ class RunFragment : Fragment(R.layout.fragment_run) {
         googleMapView.getMapAsync {
             googleMap = it
             addAllPolylines()
-        }
 
-        setObservers()
-        setToggleListener()
+            setObservers()
+            setToggleListener()
+        }
 
         sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
     }
 
+    private fun stopRun() {
+        sendCommandToService(ACTION_STOP_SERVICE)
+        findNavController().navigate(
+            R.id.action_runFragment_to_runsFragment
+        )
+    }
 
+    private fun showCancelRunDialog() {
+        val dialog = MaterialAlertDialogBuilder(
+            requireContext()
+        )
+            .setTitle("Zrušiť beh?")
+            .setMessage("Chcete zrušiť beh?")
+            .setIcon(R.drawable.stop_circle)
+            .setPositiveButton("Áno") {_, _ ->
+                stopRun()
+            }
+            .setNegativeButton("Nie") {dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .create()
+
+        dialog.show()
+    }
 
     private fun moveCameraToUser() {
         if(pathPoints.isNotEmpty() && pathPoints.last().isNotEmpty()) {
@@ -120,7 +145,7 @@ class RunFragment : Fragment(R.layout.fragment_run) {
             }
         }
         fabStopRun.setOnClickListener {
-            sendCommandToService(ACTION_STOP_SERVICE)
+            showCancelRunDialog()
         }
     }
 

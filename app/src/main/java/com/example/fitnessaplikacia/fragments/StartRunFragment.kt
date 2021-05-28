@@ -70,12 +70,18 @@ class StartRunFragment : Fragment(R.layout.fragment_start_run),
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-
+        findNavController().navigate(
+            R.id.action_startRunFragment_to_runFragment
+        )
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            AppSettingsDialog.Builder(this).build().show()
+            AppSettingsDialog.Builder(this)
+                .setTitle("Potrebujete povolenie")
+                .setRationale("Táto aplikácia potrebuje povolenie snímania polohy. Zmeňte povolenie v nastaveniach.")
+                .setPositiveButton("Nastavenia")
+                .build().show()
         } else {
             requestLocationPermissions()
         }
@@ -87,6 +93,6 @@ class StartRunFragment : Fragment(R.layout.fragment_start_run),
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 }

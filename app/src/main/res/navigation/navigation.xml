@@ -52,5 +52,9 @@
     <fragment
         android:id="@+id/runFragment"
         android:name="com.example.fitnessaplikacia.fragments.RunFragment"
-        android:label="RunFragment" />
+        android:label="RunFragment" >
+        <action
+            android:id="@+id/action_runFragment_to_runsFragment"
+            app:destination="@id/runsFragment" />
+    </fragment>
 </navigation>
