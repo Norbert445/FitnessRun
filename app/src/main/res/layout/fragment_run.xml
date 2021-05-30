@@ -96,7 +96,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView12"
+                android:id="@+id/tvAvgSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6.25 km/h"
@@ -113,9 +113,9 @@
                 android:text="Priemerné tempo"
                 android:textColor="#A9FFFFFF"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/materialTextView12"
+                app:layout_constraintEnd_toEndOf="@+id/tvAvgSpeed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView12" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAvgSpeed" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,7 +131,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView5"
+                android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2.25 km"
@@ -148,10 +148,10 @@
                 android:text="Vzdialenosť"
                 android:textColor="#A9FFFFFF"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/materialTextView5"
+                app:layout_constraintEnd_toEndOf="@+id/tvDistance"
                 app:layout_constraintHorizontal_bias="0.619"
-                app:layout_constraintStart_toStartOf="@+id/materialTextView5"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView5" />
+                app:layout_constraintStart_toStartOf="@+id/tvDistance"
+                app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -132,6 +132,14 @@ class RunFragment : Fragment(R.layout.fragment_run) {
             addLatestPolyline()
             moveCameraToUser()
         })
+
+        TrackingService.distanceInKm.observe(viewLifecycleOwner, Observer {
+            tvDistance.text = "$it km"
+        })
+
+        TrackingService.avgSpeed.observe(viewLifecycleOwner, Observer {
+            tvAvgSpeed.text = "$it km/h"
+        })
     }
 
     private fun setToggleListener() {
