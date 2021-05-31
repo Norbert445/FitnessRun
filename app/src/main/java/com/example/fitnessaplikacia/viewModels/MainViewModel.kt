@@ -12,11 +12,11 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     val mainRepository: MainRepository
 ) : ViewModel(){
-    suspend fun insertRun(run: Run) = viewModelScope.launch {
+    fun insertRun(run: Run) = viewModelScope.launch {
         mainRepository.insertRun(run)
     }
     
-    suspend fun deleteRun(run: Run) = viewModelScope.launch {
+    fun deleteRun(run: Run) = viewModelScope.launch {
         mainRepository.deleteRun(run)
     }
 

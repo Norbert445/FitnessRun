@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.fitnessaplikacia.R
+import com.example.fitnessaplikacia.models.Run
 import com.example.fitnessaplikacia.models.RunEvent
 import com.example.fitnessaplikacia.services.Polyline
 import com.example.fitnessaplikacia.services.TrackingService
@@ -19,19 +21,30 @@ import com.example.fitnessaplikacia.utility.Constants.MAP_ZOOM
 import com.example.fitnessaplikacia.utility.Constants.POLYLINE_COLOR
 import com.example.fitnessaplikacia.utility.Constants.POLYLINE_WIDTH
 import com.example.fitnessaplikacia.utility.TimerUtil
+import com.example.fitnessaplikacia.viewModels.MainViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_run.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import java.util.*
 
 
 class RunFragment : Fragment(R.layout.fragment_run) {
+
+    private val viewModel: MainViewModel by viewModels()
 
     lateinit var googleMap: GoogleMap
     private var toggle = true
 
     private var pathPoints = mutableListOf<Polyline>()
+
+    private var distance = 0f
+    private var caloriesBurned = 0
+    private var curTimeInMillis = 0L
+    private var avgSpeed = 0f
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,15 +68,27 @@ class RunFragment : Fragment(R.layout.fragment_run) {
         )
     }
 
+    private fun saveRunToDB() {
+        googleMap.snapshot {
+            val dateTimeStamp = Calendar.getInstance().timeInMillis
+            val run = Run(it, dateTimeStamp, curTimeInMillis, distance, avgSpeed, caloriesBurned)
+            CoroutineScope(Dispatchers.Main)
+
+            viewModel.insertRun(run)
+        }
+
+        stopRun()
+    }
+
     private fun showCancelRunDialog() {
         val dialog = MaterialAlertDialogBuilder(
             requireContext()
         )
             .setTitle("Zrušiť beh?")
-            .setMessage("Chcete zrušiť beh?")
+            .setMessage("Chcete ukončiť beh?")
             .setIcon(R.drawable.stop_circle)
             .setPositiveButton("Áno") {_, _ ->
-                stopRun()
+                saveRunToDB()
             }
             .setNegativeButton("Nie") {dialogInterface, _ ->
                 dialogInterface.dismiss()
@@ -117,14 +142,12 @@ class RunFragment : Fragment(R.layout.fragment_run) {
                 RunEvent.PAUSE -> {
                     fabPauseRun.setImageResource(R.drawable.play)
                 }
-                RunEvent.END -> {
-
-                }
             }
         })
 
         TrackingService.timeInMillis.observe(viewLifecycleOwner, Observer {
-            tvTime.text = TimerUtil.getFormattedTime(it,true)
+            curTimeInMillis = it
+            tvTime.text = TimerUtil.getFormattedTime(curTimeInMillis,true)
         })
 
         TrackingService.pathPoints.observe(viewLifecycleOwner, Observer {
@@ -134,11 +157,18 @@ class RunFragment : Fragment(R.layout.fragment_run) {
         })
 
         TrackingService.distanceInKm.observe(viewLifecycleOwner, Observer {
-            tvDistance.text = "$it km"
+            distance = it
+            tvDistance.text = "$distance km"
         })
 
         TrackingService.avgSpeed.observe(viewLifecycleOwner, Observer {
-            tvAvgSpeed.text = "$it km/h"
+            avgSpeed = it
+            tvAvgSpeed.text = "$avgSpeed km/h"
+        })
+
+        TrackingService.caloriesBurned.observe(viewLifecycleOwner, Observer {
+            caloriesBurned = it
+            tvCaloriesBurned.text = "$caloriesBurned kcal"
         })
     }
 

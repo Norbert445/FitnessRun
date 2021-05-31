@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTime">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView2"
+                android:id="@+id/tvCaloriesBurned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="243 kcal"
@@ -77,10 +77,10 @@
                 android:text="Spálené kalórie"
                 android:textColor="#A9FFFFFF"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
+                app:layout_constraintEnd_toEndOf="@+id/tvCaloriesBurned"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/materialTextView2"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+                app:layout_constraintStart_toStartOf="@+id/tvCaloriesBurned"
+                app:layout_constraintTop_toBottomOf="@+id/tvCaloriesBurned" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
