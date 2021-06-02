@@ -3,9 +3,7 @@ package com.example.fitnessaplikacia.fragments
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -26,12 +24,13 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_run.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import java.util.*
 
-
+@AndroidEntryPoint
 class RunFragment : Fragment(R.layout.fragment_run) {
 
     private val viewModel: MainViewModel by viewModels()
@@ -147,7 +146,7 @@ class RunFragment : Fragment(R.layout.fragment_run) {
 
         TrackingService.timeInMillis.observe(viewLifecycleOwner, Observer {
             curTimeInMillis = it
-            tvTime.text = TimerUtil.getFormattedTime(curTimeInMillis,true)
+            tvTimeDescription.text = TimerUtil.getFormattedTime(curTimeInMillis,true)
         })
 
         TrackingService.pathPoints.observe(viewLifecycleOwner, Observer {
@@ -158,12 +157,12 @@ class RunFragment : Fragment(R.layout.fragment_run) {
 
         TrackingService.distanceInKm.observe(viewLifecycleOwner, Observer {
             distance = it
-            tvDistance.text = "$distance km"
+            tvDistanceDescription.text = "$distance km"
         })
 
         TrackingService.avgSpeed.observe(viewLifecycleOwner, Observer {
             avgSpeed = it
-            tvAvgSpeed.text = "$avgSpeed km/h"
+            tvAvgSpeedDescription.text = "$avgSpeed km/h"
         })
 
         TrackingService.caloriesBurned.observe(viewLifecycleOwner, Observer {

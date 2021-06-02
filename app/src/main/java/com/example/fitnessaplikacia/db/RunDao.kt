@@ -12,6 +12,9 @@ interface RunDao {
     @Delete
     suspend fun deleteRun(run: Run)
 
+    @Query("SELECT * FROM running_table")
+    fun getRuns(): LiveData<List<Run>>
+
     @Query("SELECT SUM(timeInMillis) FROM running_table")
     fun getTotalTime(): LiveData<Long>
 

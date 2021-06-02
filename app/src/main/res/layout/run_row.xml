@@ -24,7 +24,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -32,26 +32,26 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:textStyle="bold"
             android:text="04:23"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/tvDistance"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="@+id/tvDate" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4.25 km"
@@ -60,44 +60,44 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/tvTime"
+            app:layout_constraintTop_toTopOf="@+id/tvDate" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDate"
+            android:id="@+id/tvDateDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dátum"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tvDate"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/tvDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTime"
+            android:id="@+id/tvTimeDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Čas"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="@+id/tvTime"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/tvTime"
+            app:layout_constraintTop_toBottomOf="@+id/tvTime" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDistance"
+            android:id="@+id/tvDistanceDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vzdialenosť"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintEnd_toEndOf="@+id/tvDistance"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvDistance"
+            app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvAvgSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -105,13 +105,13 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/tvCalories"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDateDescription" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvCalories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="325 kcal"
@@ -120,32 +120,32 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            app:layout_constraintStart_toEndOf="@+id/tvAvgSpeed"
+            app:layout_constraintTop_toTopOf="@+id/tvAvgSpeed" />
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvAvgSpeed"
+            android:id="@+id/tvAvgSpeedDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Priemer. rýchlosť"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="@+id/tvAvgSpeed"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintStart_toStartOf="@+id/tvAvgSpeed"
+            app:layout_constraintTop_toBottomOf="@+id/tvAvgSpeed" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvCalories"
+            android:id="@+id/tvCaloriesDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kalórie"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/tvCalories"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintStart_toStartOf="@+id/tvCalories"
+            app:layout_constraintTop_toBottomOf="@+id/tvCalories" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.fitnessaplikacia.viewModels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fitnessaplikacia.models.Run
@@ -12,10 +13,14 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     val mainRepository: MainRepository
 ) : ViewModel(){
+
+    private val _runs = mainRepository.getRuns()
+    val runs = MutableLiveData<List<Run>>()
+
     fun insertRun(run: Run) = viewModelScope.launch {
         mainRepository.insertRun(run)
     }
-    
+
     fun deleteRun(run: Run) = viewModelScope.launch {
         mainRepository.deleteRun(run)
     }

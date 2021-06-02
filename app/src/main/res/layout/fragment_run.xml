@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTime"
+            android:id="@+id/tvTimeDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00:00:00"
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTime">
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeDescription">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCaloriesBurned"
@@ -96,7 +96,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvAvgSpeed"
+                android:id="@+id/tvAvgSpeedDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6.25 km/h"
@@ -113,9 +113,9 @@
                 android:text="Priemerné tempo"
                 android:textColor="#A9FFFFFF"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/tvAvgSpeed"
+                app:layout_constraintEnd_toEndOf="@+id/tvAvgSpeedDescription"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAvgSpeed" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAvgSpeedDescription" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,7 +131,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvDistance"
+                android:id="@+id/tvDistanceDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2.25 km"
@@ -148,10 +148,10 @@
                 android:text="Vzdialenosť"
                 android:textColor="#A9FFFFFF"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/tvDistance"
+                app:layout_constraintEnd_toEndOf="@+id/tvDistanceDescription"
                 app:layout_constraintHorizontal_bias="0.619"
-                app:layout_constraintStart_toStartOf="@+id/tvDistance"
-                app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
+                app:layout_constraintStart_toStartOf="@+id/tvDistanceDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDistanceDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -10,6 +10,7 @@ class MainRepository @Inject constructor(
     suspend fun insertRun(run: Run) = runDao.insertRun(run)
     suspend fun deleteRun(run: Run) = runDao.deleteRun(run)
 
+    fun getRuns() = runDao.getRuns()
     fun getTotalTime() = runDao.getTotalTime()
     fun getTotalDistance() = runDao.getTotalDistance()
     fun getTotalCalories() = runDao.getTotalCalories()
