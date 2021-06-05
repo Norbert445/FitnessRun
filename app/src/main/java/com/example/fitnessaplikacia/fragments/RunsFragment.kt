@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessaplikacia.Adapters.RunAdapter
 import com.example.fitnessaplikacia.R
+import com.example.fitnessaplikacia.models.Run
+import com.example.fitnessaplikacia.utility.SwipeToDeleteCallback
 import com.example.fitnessaplikacia.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_runs.*
+import timber.log.Timber
 
 @AndroidEntryPoint
 class RunsFragment : Fragment(R.layout.fragment_runs) {
@@ -19,11 +24,19 @@ class RunsFragment : Fragment(R.layout.fragment_runs) {
 
     lateinit var runAdapter: RunAdapter
 
+    private lateinit var runs: MutableList<Run>
+
+    private val onItemClickListener = object : RunAdapter.OnItemClickListener {
+        override fun onItemClick(position: Int) {
+            Timber.d("Clicked ${position}. item")
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //Set up recyclerView
-        runAdapter = RunAdapter()
+        runAdapter = RunAdapter(onItemClickListener)
         setUpRecyclerView()
 
         setObservers()
@@ -31,6 +44,15 @@ class RunsFragment : Fragment(R.layout.fragment_runs) {
 
     private fun setUpRecyclerView() {
         rvRuns.apply {
+            val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    runs.removeAt(viewHolder.adapterPosition)
+                    runAdapter.submitList(runs)
+                }
+            }
+            val itemTouchHelper = ItemTouchHelper(swipeHandler).apply {
+                attachToRecyclerView(rvRuns)
+            }
             adapter = runAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -39,7 +61,9 @@ class RunsFragment : Fragment(R.layout.fragment_runs) {
 
     private fun setObservers() {
         viewModel.runs.observe(viewLifecycleOwner, Observer {
-            runAdapter.submitList(it)
+            runs = it as MutableList<Run>
+            runAdapter.submitList(runs)
         })
     }
+
 }

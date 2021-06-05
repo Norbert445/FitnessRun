@@ -14,8 +14,7 @@ class MainViewModel @Inject constructor(
     val mainRepository: MainRepository
 ) : ViewModel(){
 
-    private val _runs = mainRepository.getRuns()
-    val runs = MutableLiveData<List<Run>>()
+    val runs = mainRepository.getRuns()
 
     fun insertRun(run: Run) = viewModelScope.launch {
         mainRepository.insertRun(run)
