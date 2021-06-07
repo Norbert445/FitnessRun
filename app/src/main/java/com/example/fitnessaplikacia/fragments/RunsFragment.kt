@@ -46,13 +46,13 @@ class RunsFragment : Fragment(R.layout.fragment_runs) {
         rvRuns.apply {
             val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    runs.removeAt(viewHolder.adapterPosition)
-                    runAdapter.submitList(runs)
+                    viewModel.deleteRun(runs[viewHolder.adapterPosition])
                 }
             }
             val itemTouchHelper = ItemTouchHelper(swipeHandler).apply {
                 attachToRecyclerView(rvRuns)
             }
+
             adapter = runAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

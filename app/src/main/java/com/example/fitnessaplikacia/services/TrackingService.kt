@@ -230,7 +230,7 @@ class TrackingService : LifecycleService() {
 
     private var _avgSpeed = 0f
     private fun updateAvgSpeed() {
-        _avgSpeed = round(distanceInKmTotal / (lapTime / 1000f / 60 / 60) * 10) / 10f
+        _avgSpeed = round(distanceInKmTotal / ((lapTime + runTime) / 1000f / 60 / 60) * 10) / 10f
         avgSpeed.postValue(String.format("%.2f",_avgSpeed).toFloat())
     }
 
