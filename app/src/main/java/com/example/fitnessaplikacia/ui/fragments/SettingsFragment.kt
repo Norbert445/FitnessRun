@@ -1,4 +1,4 @@
-package com.example.fitnessaplikacia.fragments
+package com.example.fitnessaplikacia.ui.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.navigation.fragment.findNavController
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.utility.Constants.KEY_NAME
 import com.example.fitnessaplikacia.utility.Constants.KEY_WEIGHT

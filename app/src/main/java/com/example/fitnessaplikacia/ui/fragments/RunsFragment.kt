@@ -1,4 +1,4 @@
-package com.example.fitnessaplikacia.fragments
+package com.example.fitnessaplikacia.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -63,6 +63,14 @@ class RunsFragment : Fragment(R.layout.fragment_runs) {
         viewModel.runs.observe(viewLifecycleOwner, Observer {
             runs = it as MutableList<Run>
             runAdapter.submitList(runs)
+
+            if(runs.isEmpty()) {
+               tvNoRun.visibility = View.VISIBLE
+               ivRunCircle.visibility = View.VISIBLE
+            } else {
+                tvNoRun.visibility = View.GONE
+                ivRunCircle.visibility = View.GONE
+            }
         })
     }
 

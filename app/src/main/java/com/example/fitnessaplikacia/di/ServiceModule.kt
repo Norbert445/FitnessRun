@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.fitnessaplikacia.MainActivity
+import com.example.fitnessaplikacia.ui.MainActivity
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.utility.Constants
 import dagger.Module

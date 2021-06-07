@@ -1,18 +1,16 @@
-package com.example.fitnessaplikacia.fragments
+package com.example.fitnessaplikacia.ui.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.findNavController
 import com.example.fitnessaplikacia.R
 import com.example.fitnessaplikacia.utility.Constants.KEY_FIRST_TIME_TOGGLE
 import com.example.fitnessaplikacia.utility.Constants.KEY_WEIGHT
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_weight.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint

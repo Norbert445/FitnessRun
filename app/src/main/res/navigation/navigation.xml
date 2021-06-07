@@ -6,17 +6,17 @@
     app:startDestination="@id/setupName">
     <fragment
         android:id="@+id/runsFragment"
-        android:name="com.example.fitnessaplikacia.fragments.RunsFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.RunsFragment"
         android:label="fragment_runs"
         tools:layout="@layout/fragment_runs" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.fitnessaplikacia.fragments.SettingsFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/startRunFragment"
-        android:name="com.example.fitnessaplikacia.fragments.StartRunFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.StartRunFragment"
         android:label="fragment_start_run"
         tools:layout="@layout/fragment_start_run" >
         <action
@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.fitnessaplikacia.fragments.StatisticsFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.StatisticsFragment"
         android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/setupName"
-        android:name="com.example.fitnessaplikacia.fragments.SetupNameFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.SetupNameFragment"
         android:label="fragment_setup_name"
         tools:layout="@layout/fragment_setup_name" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
-        android:name="com.example.fitnessaplikacia.fragments.WeightFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.WeightFragment"
         android:label="fragment_weight"
         tools:layout="@layout/fragment_weight" >
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/runFragment"
-        android:name="com.example.fitnessaplikacia.fragments.RunFragment"
+        android:name="com.example.fitnessaplikacia.ui.fragments.RunFragment"
         android:label="RunFragment" >
         <action
             android:id="@+id/action_runFragment_to_runsFragment"

@@ -1,4 +1,4 @@
-package com.example.fitnessaplikacia.fragments
+package com.example.fitnessaplikacia.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle

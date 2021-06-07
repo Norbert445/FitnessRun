@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.fitnessaplikacia.fragments.StatisticsFragment">
+    tools:context=".ui.fragments.StatisticsFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -204,6 +204,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"

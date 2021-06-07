@@ -1,4 +1,4 @@
-package com.example.fitnessaplikacia.utility
+package com.example.fitnessaplikacia
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

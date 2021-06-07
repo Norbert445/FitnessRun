@@ -1,4 +1,4 @@
-package com.example.fitnessaplikacia
+package com.example.fitnessaplikacia.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
