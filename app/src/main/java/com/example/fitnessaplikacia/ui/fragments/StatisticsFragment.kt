@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.fitnessaplikacia.R
+import com.example.fitnessaplikacia.utility.CustomMarkerView
 import com.example.fitnessaplikacia.utility.TimerUtil
 import com.example.fitnessaplikacia.viewModels.MainViewModel
 import com.example.fitnessaplikacia.viewModels.StatisticsViewModel
@@ -29,6 +30,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         super.onViewCreated(view, savedInstanceState)
 
         setObservers()
+        setupBarChart()
 
     }
 
@@ -37,21 +39,21 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             position = XAxis.XAxisPosition.BOTTOM
             setDrawLabels(false)
             axisLineColor = Color.WHITE
-            textColor = Color.WHITE
+            textColor =  Color.WHITE
             setDrawGridLines(false)
         }
         barChart.axisLeft.apply {
-            axisLineColor = Color.WHITE
-            textColor = Color.WHITE
+            axisLineColor =  Color.WHITE
+            textColor =  Color.WHITE
             setDrawGridLines(false)
         }
         barChart.axisRight.apply {
-            axisLineColor = Color.WHITE
-            textColor = Color.WHITE
+            axisLineColor =  Color.WHITE
+            textColor =  Color.WHITE
             setDrawGridLines(false)
         }
         barChart.apply {
-            description.text = "Avg Speed Over Time"
+            description.text = ""
             legend.isEnabled = false
         }
     }
@@ -66,7 +68,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         })
 
         statisticsViewModel.totalDistance.observe(viewLifecycleOwner, Observer {
-            tvDistance.text = if (it != null) "$it km" else "0 km"
+            tvDistance.text = if (it != null) "${String.format("%.2f",it)} km" else "0 km"
         })
 
         statisticsViewModel.caloriesBurned.observe(viewLifecycleOwner, Observer {
@@ -76,10 +78,10 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             val allDistances = it.indices.map {i -> BarEntry(i.toFloat(), it[i].distance) }
             val barDataSet = BarDataSet(allDistances, "Vzdialenosť nedávnych behov").apply {
                 valueTextColor = Color.WHITE
-                color = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
+                color = ContextCompat.getColor(requireContext(), R.color.secondaryColor)
             }
             barChart.data = BarData(barDataSet)
-            //MarkerView
+            barChart.marker = CustomMarkerView(it, requireContext(), R.layout.marker_view)
             barChart.invalidate()
         })
     }
