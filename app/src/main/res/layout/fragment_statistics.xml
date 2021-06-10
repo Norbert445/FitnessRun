@@ -134,7 +134,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tvTime"
+                android:id="@+id/tvTotalDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
@@ -152,7 +152,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalDistance" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -233,6 +233,7 @@
             android:layout_height="wrap_content"
             android:background="#fff"
             android:padding="10dp"
+            android:visibility="gone"
             android:text="Musíte mať aspoň 2 behy"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"

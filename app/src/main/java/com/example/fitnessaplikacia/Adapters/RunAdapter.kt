@@ -51,7 +51,7 @@ class RunAdapter(
             val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
             tvDate.text = dateFormat.format(calendar.time)
 
-            tvTime.text = TimerUtil.getFormattedTime(run.timeInMillis)
+            tvTotalDistance.text = TimerUtil.getFormattedTime(run.timeInMillis)
             tvCalories.text = "${run.calories} kcal"
         }
     }

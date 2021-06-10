@@ -38,6 +38,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 import kotlin.math.round
 
@@ -225,13 +226,13 @@ class TrackingService : LifecycleService() {
     private fun updateDistance(polyline: Polyline) {
         distanceInKmOfSinglePolyline = PolylineLengthUtil.calculatePolylineLength(polyline) / 1000f
         distanceInKmTotal += distanceInKmOfSinglePolyline
-        distanceInKm.postValue(String.format("%.2f",distanceInKmTotal).toFloat())
+        distanceInKm.postValue(String.format(Locale.US,"%.2f",distanceInKmTotal).toFloat())
     }
 
     private var _avgSpeed = 0f
     private fun updateAvgSpeed() {
         _avgSpeed = round(distanceInKmTotal / ((lapTime + runTime) / 1000f / 60 / 60) * 10) / 10f
-        avgSpeed.postValue(String.format("%.2f",_avgSpeed).toFloat())
+        avgSpeed.postValue(String.format(Locale.US,"%.2f",_avgSpeed).toFloat())
     }
 
     private var _caloriesBurned = 0

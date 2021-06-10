@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_statistics.*
+import java.util.*
 
 @AndroidEntryPoint
 class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
@@ -64,15 +65,15 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
 
     private fun setObservers() {
         statisticsViewModel.avgSpeed.observe(viewLifecycleOwner, Observer {
-            tvAvgSpeed.text = if (it != null) "${String.format("%.2f", it)} km/h" else "0 km/h"
+            tvAvgSpeed.text = if (it != null) "${String.format(Locale.US,"%.2f", it)} km/h" else "0 km/h"
         })
 
         statisticsViewModel.totalTime.observe(viewLifecycleOwner, Observer {
-            tvTime.text = if (it != null) TimerUtil.getFormattedTime(it) else "00:00:00"
+            tvTotalDistance.text = if (it != null) TimerUtil.getFormattedTime(it) else "00:00:00"
         })
 
         statisticsViewModel.totalDistance.observe(viewLifecycleOwner, Observer {
-            tvDistance.text = if (it != null) "${String.format("%.2f",it)} km" else "0 km"
+            tvDistance.text = if (it != null) "${String.format(Locale.US,"%.2f",it)} km" else "0 km"
         })
 
         statisticsViewModel.caloriesBurned.observe(viewLifecycleOwner, Observer {
@@ -83,6 +84,8 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                 barChart.visibility = View.VISIBLE
                 tvNoRun.visibility = View.GONE
             } else {
+                barChart.visibility = View.GONE
+                tvNoRun.visibility = View.VISIBLE
                 return@Observer
             }
             val allDistances = it.indices.map {i ->

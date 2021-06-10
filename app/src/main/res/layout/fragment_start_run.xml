@@ -46,11 +46,11 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <TextView
-        android:id="@+id/tvTime"
+        android:id="@+id/tvTotalDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="153.25 km"
+        android:text="0.00 km"
         android:textColor="@color/colorPrimary"
         android:textSize="43sp"
         android:textStyle="bold"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Celková odbehnutá vzdialenosť"
-        app:layout_constraintEnd_toEndOf="@+id/tvTime"
-        app:layout_constraintStart_toStartOf="@+id/tvTime"
-        app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalDistance"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalDistance"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalDistance" />
 </androidx.constraintlayout.widget.ConstraintLayout>
