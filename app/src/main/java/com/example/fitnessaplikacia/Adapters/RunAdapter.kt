@@ -61,7 +61,8 @@ class RunAdapter(
     }
 
     fun submitList(runs: List<Run>) {
-        differ.submitList(runs)
+        val _runs = runs.reversed()
+        differ.submitList(_runs)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {

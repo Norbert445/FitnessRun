@@ -86,7 +86,7 @@ class StartRunFragment : Fragment(R.layout.fragment_start_run),
 
     private fun setObservers() {
         viewModel.totalDistance.observe(viewLifecycleOwner, Observer {
-            tvTotalDistance.text = if (it != null) "$it km" else "0 km"
+            tvTotalDistance.text = if (it != null) "${String.format("%.2f",it)} km" else "0 km"
         })
     }
 

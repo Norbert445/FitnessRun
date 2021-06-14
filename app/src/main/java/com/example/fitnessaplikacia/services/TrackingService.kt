@@ -164,7 +164,7 @@ class TrackingService : LifecycleService() {
                     timeInSeconds.postValue(timeInSeconds.value!! + 1)
                     lastSecondTimestamp += 1000L
                 }
-                delay(30L)
+                delay(50L)
             }
             runTime += lapTime
         }
@@ -222,17 +222,21 @@ class TrackingService : LifecycleService() {
     }
 
     private var distanceInKmTotal = 0f
-    private var distanceInKmOfSinglePolyline = 0f
     private fun updateDistance(polyline: Polyline) {
-        distanceInKmOfSinglePolyline = PolylineLengthUtil.calculatePolylineLength(polyline) / 1000f
-        distanceInKmTotal += distanceInKmOfSinglePolyline
+        distanceInKmTotal = 0f
+        for(polyline in pathPoints.value!!) {
+            distanceInKmTotal += PolylineLengthUtil.calculatePolylineLength(polyline).toInt()
+        }
+        distanceInKmTotal /= 1000f
         distanceInKm.postValue(String.format(Locale.US,"%.2f",distanceInKmTotal).toFloat())
     }
 
     private var _avgSpeed = 0f
     private fun updateAvgSpeed() {
-        _avgSpeed = round(distanceInKmTotal / ((lapTime + runTime) / 1000f / 60 / 60) * 10) / 10f
+        _avgSpeed = round(distanceInKmTotal / (timeInMillis.value!! / 1000f / 60 / 60) * 10) / 10f
         avgSpeed.postValue(String.format(Locale.US,"%.2f",_avgSpeed).toFloat())
+        Timber.d("Distance: $distanceInKmTotal")
+        Timber.d("Time: ${(timeInMillis.value!! / 1000f / 60 / 60) * 10 / 10f}")
     }
 
     private var _caloriesBurned = 0
@@ -249,7 +253,6 @@ class TrackingService : LifecycleService() {
     private fun startForegroundService() {
         isServiceStopped = false
         isTracking.postValue(true)
-        addEmptyPolyline()
 
         runEvent.postValue(RunEvent.START)
         startTimer()
